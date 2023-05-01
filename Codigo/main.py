@@ -74,7 +74,11 @@ def next_turn(snake, food):
 
         del snake.squares[-1]
 
-    window.after(SPEED, next_turn, snake, food)
+    if check_collisions(snake):
+        game_over()
+
+    else:
+        window.after(SPEED, next_turn, snake, food)
 
 def change_direction(new_direction):
     
@@ -94,11 +98,28 @@ def change_direction(new_direction):
             direction = new_direction
 
 
-def check_collisions():
-    pass
+def check_collisions(snake):
+    
+    x, y = snake.coordinates[0]
+
+    if x < 0 or x >= GAME_WIDTH:
+        print("GAME OVER")
+        return True
+    elif y < 0 or y >= GAME_HEIGHT:
+        print("GAME OVER")
+        return True
+    
+    for body_part in snake.coordinates[1:]:
+        if x == body_part[0] and y == body_part[1]:
+            print ("Game Over")
+            return True
+        
+    return False
 
 def game_over():
-    pass
+    canvas.delete(ALL)
+    canvas.create_text(canvas.winfo_width()/2, canvas.winfo_height()/2,
+                       font=('consolas',70), text = "FIM DE JOGO", fill="red", tag="gameover")
 
 window = Tk()                                                   # Cria a Tela
 window.title("Snake game")                                      # Adiciona um titulo a Tela
