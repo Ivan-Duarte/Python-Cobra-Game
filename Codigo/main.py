@@ -62,7 +62,7 @@ def next_turn(snake, food):
         global score
         score += 1
 
-        label.config(text="Score:{}".format(score))
+        label.config(text="PONTUAÇÃO:{}".format(score))
 
         canvas.delete("food")
 
@@ -141,7 +141,7 @@ direction = 'right'
 
 
 
-label = Label(window, text="Score:{}".format(score), font=('consolas', 40))
+label = Label(window, text="PONTUAÇÃO:{}".format(score), font=('consolas', 40))
 label.pack()
 
 canvas = Canvas(window, bg=BACKGROUND_COLOR, height=GAME_HEIGHT, width=GAME_WIDTH)
