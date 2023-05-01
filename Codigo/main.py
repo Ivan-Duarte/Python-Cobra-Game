@@ -3,12 +3,13 @@ import random
 
 GAME_WIDTH = 700
 GAME_HEIGHT = 700
-SPEED = 100
+SPEED = 125
 SPACE_SIZE = 50
 BODY_PARTS = 3
 SNAKE_COLOR = "#00FF00"
 FOOD_COLOR = "#FF0000"
 BACKGROUND_COLOR = "#000000"
+
 
 class Snake:
     
@@ -77,6 +78,10 @@ def next_turn(snake, food):
     if check_collisions(snake):
         game_over()
 
+    elif score >= 196:
+        print("Victory")
+        game_win()
+
     else:
         window.after(SPEED, next_turn, snake, food)
 
@@ -120,13 +125,21 @@ def game_over():
     canvas.delete(ALL)
     canvas.create_text(canvas.winfo_width()/2, canvas.winfo_height()/2,
                        font=('consolas',70), text = "FIM DE JOGO", fill="red", tag="gameover")
+    
+def game_win():
+    canvas.delete(ALL)
+    canvas.create_text(canvas.winfo_width()/2, canvas.winfo_height()/2,
+                       font=('consolas',70), text = "VITÓRIA", fill="green", tag="win")
+    
 
 window = Tk()                                                   # Cria a Tela
 window.title("Snake game")                                      # Adiciona um titulo a Tela
 window.resizable(False, False)                                  # Impede que a Janela seja redimencionavel
 
 score = 0
-direction = 'down'
+direction = 'right'
+
+
 
 label = Label(window, text="Score:{}".format(score), font=('consolas', 40))
 label.pack()
@@ -151,9 +164,12 @@ window.bind('<Right>', lambda event: change_direction('right'))
 window.bind('<Up>', lambda event: change_direction('up'))
 window.bind('<Down>', lambda event: change_direction('down'))
 
+
 snake = Snake()
 food = Food()
 next_turn(snake, food)
 
+
 window.mainloop()
+
 
