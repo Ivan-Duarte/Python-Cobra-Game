@@ -2,6 +2,7 @@
 
 ❗❗❗ DESCRIÇÃO:
 <h4>
+Projeto feito sem utilizar a biblioteca PyGames<p>
 Minha intenção com esse projeto foi de ampliar meus conhecimentos de manipulação com vetores e matrizes, também de treinar os conceitos básicos da programação em python.<p>
 Neste código eu segui um tutorial do YouTuber "Bro Code" e para fins de curiosidade eu acrescentei novas funcionalidades ao programa, como a "Tela de Vitória"<p>
 <br>
